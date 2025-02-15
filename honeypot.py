@@ -20,7 +20,7 @@ def start_flask_honeypot(port: int):
 
         return {"status": random.randint(-1024, 1024)}
 
-    app.run("0.0.0.0", port)
+    app.run("0.0.0.0", port, debug=True)
 
 if __name__ == "__main__":
     ports = [80, 3000, 5000, 8080]
