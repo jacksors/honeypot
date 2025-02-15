@@ -1,7 +1,6 @@
 import datetime
 import random
-import threading
-
+from multiprocessing import Process
 from flask import Flask, request
 
 def start_flask_honeypot(port: int):
@@ -25,11 +24,11 @@ def start_flask_honeypot(port: int):
 
 if __name__ == "__main__":
     ports = [80, 3000, 5000, 8080]
-    threads = []
+    processes = []
     for port in ports:
-        thread = threading.Thread(target=start_flask_honeypot, args=[port])
-        thread.start()
-        threads.append(thread)
+        process = Process(target=start_flask_honeypot, args=[port])
+        process.start()
+        processes.append(process)
 
-    for thread in threads:
-        thread.join()
+    for process in processes:
+        process.join()
